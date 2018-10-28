@@ -1,6 +1,9 @@
 
 var routes = [{
   path: '/',
+  url: './pages/home.html',
+}, {
+  path: '/abc',
   async: function (routeTo, routeFrom, resolve, reject) {
     var self = this;
     var app = self.app;
