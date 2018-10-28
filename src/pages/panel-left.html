@@ -1,0 +1,87 @@
+<template>
+  <div class="page" data-name="stories">
+    <div class="page-content">
+      <div class="block-title">Page Loaders &amp; Router</div>
+      <div class="list links-list">
+        <ul>
+          {{#each endpoints}} {{#if this.maxPages}}
+          <li>
+            <a href="/page-loader-template7/vladimir/123/about-me/1/?start=0&amp;end=30#top" class="panel-close">{{this.topic}}</a>
+          </li>
+          {{/if}} {{/each}}
+          <li>
+            <a href="/page-loader-component/vladimir/123/about-me/1/?start=0&amp;end=30#top">Component Page</a>
+          </li>
+          <li>
+            <a href="/load-something-that-doesnt-exist/">Default Route (404)</a>
+          </li>
+          <li>
+            <a href="/request-and-load/user/123456/">Request Data &amp; Load</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  return {
+    // Lifecycle Hooks
+    beforeCreate() {
+      console.log('componentBeforeCreate', this)
+    },
+    created() {
+      console.log('componentCreated', this)
+    },
+    beforeMount() {
+      console.log('componentBeforeMount', this)
+    },
+    mounted() {
+      console.log('componentMounted', this);
+    },
+    beforeDestroy() {
+      console.log('componentBeforeDestroy', this);
+    },
+    destroyed() {
+      console.log('componentDestroyed', this);
+    },
+    data: function () {
+      var self = this;
+      var app = self.$app;
+      var endpoints = app.data.api.endpoints;
+      var endpoint = endpoints[0];
+      return {
+        endpoints: endpoints,
+        endpoint: endpoint,
+        allowInfinite: true,
+        hasMoreItems: true,
+        lastPage: 1,
+        stories: [],
+        indexTopic: 0
+      }
+    },
+
+    on: {
+      pageMounted: function (e, page) {
+        console.log('pageMounted', page);
+      },
+      pageInit: function (e, page) {
+        console.log('pageInit', page);
+      },
+      pageBeforeIn: function (e, page) {
+        console.log('pageBeforeIn', page);
+      },
+      pageAfterIn: function (e, page) {
+        console.log('pageAfterIn', page);
+      },
+      pageBeforeOut: function (e, page) {
+        console.log('pageBeforeOut', page);
+      },
+      pageAfterOut: function (e, page) {
+        console.log('pageAfterOut', page);
+      },
+      pageBeforeRemove: function (e, page) {
+        console.log('pageBeforeRemove', page);
+      },
+    }
+  }
+</script>

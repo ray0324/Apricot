@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <meta name="description" content="A simply readable Hacker News app powered by Framework7">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="theme-color" content="#ff9800">
+
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <!-- Splash screens -->
+  <link href="img/apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image">
+  <link href="img/apple-touch-startup-image-1536x2008.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image">
+  <link href="img/apple-touch-startup-image-1496x2048.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image">
+
+  <!-- Web manifest -->
+  <!-- <link rel="manifest" href="manifest.json"> -->
+
+  <title>Apricot</title>
+
+  <link rel="stylesheet" href="lib/framework7.css">
+  <link rel="stylesheet" href="css/icons.css">
+  <!-- <link rel="stylesheet" href="css/hn7.css"> -->
+</head>
+
+<body>
+  <noscript>You have javascript disabled, but this app needs it to work =(</noscript>
+  <div id="app" class="color-theme-orange">
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar"></div>
+
+    <!-- left view for splitview mode -->
+    <div class="panel panel-left panel-cover">
+      <div class="view" id="panel-left-view">
+      </div>
+    </div>
+
+    <!-- main view -->
+    <div class="view view-main">
+    </div>
+
+    <div class="login-screen modal-in" id="login">
+      <div class="view" id="login-view">
+        <div class="page">
+          <div class="page-content login-screen-content">
+            <div class="login-screen-title">Login</div>
+            <div class="list">
+              <ul>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Username</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="username" placeholder="Your username">
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Password</div>
+                    <div class="item-input-wrap">
+                      <input type="password" name="password" placeholder="Your password">
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="list">
+              <ul>
+                <li>
+                  <a href="#" class="item-link list-button login-button close-login-screen">Sign In</a>
+                </li>
+              </ul>
+              <div class="block-footer">Some text about login information.<br>Click "Sign In" to close Login Screen</div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- libraries -->
+  <script src="js/mock.js"></script>
+  <script src="js/api.js"></script>
+  <script src="lib/framework7.js"></script>
+  <script src="js/routes.js"></script>
+  <script src="js/app.js"></script>
+  <!-- <script src="service-worker-registration.js"></script> -->
+  <!-- <script src="js/esl.js" data-main="js/main"></script> -->
+  <!-- <script>
+		require.config({
+			baseUrl: './',
+			paths: {
+				framework7: './lib/framework7', // 引用外部模块可以用paths配置
+				routes: './js/routes', // 引用外部模块可以用paths配置
+			}
+		});
+	</script> -->
+</body>
+
+</html>

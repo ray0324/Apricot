@@ -1,0 +1,26 @@
+{
+  "name": "apricot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "gulp",
+    "stop": "gulp clean",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.6.1",
+    "gulp-open": "^3.0.1",
+    "http-proxy-middleware": "^0.19.0"
+  },
+  "dependencies": {
+    "framework7": "^3.5.0",
+    "framework7-icons": "^0.9.1",
+    "material-design-icons": "^3.0.1"
+  }
+}
