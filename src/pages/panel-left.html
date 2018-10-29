@@ -1,23 +1,14 @@
 <template>
   <div class="page" data-name="stories">
     <div class="page-content">
-      <div class="block-title">Page Loaders &amp; Router</div>
+      <div class="block-title"></div>
       <div class="list links-list">
         <ul>
-          {{#each endpoints}} {{#if this.maxPages}}
+          {{#each menu}}
           <li>
-            <a href="/page-loader-template7/vladimir/123/about-me/1/?start=0&amp;end=30#top" class="panel-close">{{this.topic}}</a>
+            <a href="{{this.link}}" class="panel-close">{{this.name}}</a>
           </li>
-          {{/if}} {{/each}}
-          <li>
-            <a href="/page-loader-component/vladimir/123/about-me/1/?start=0&amp;end=30#top">Component Page</a>
-          </li>
-          <li>
-            <a href="/load-something-that-doesnt-exist/">Default Route (404)</a>
-          </li>
-          <li>
-            <a href="/request-and-load/user/123456/">Request Data &amp; Load</a>
-          </li>
+          {{/each}}
         </ul>
       </div>
     </div>
@@ -45,19 +36,21 @@
       console.log('componentDestroyed', this);
     },
     data: function () {
-      var self = this;
-      var app = self.$app;
-      var endpoints = app.data.api.endpoints;
-      var endpoint = endpoints[0];
+      var app = this.$app;
+      // var endpoints = app.data.menu;
       return {
-        endpoints: endpoints,
-        endpoint: endpoint,
-        allowInfinite: true,
-        hasMoreItems: true,
-        lastPage: 1,
-        stories: [],
-        indexTopic: 0
+        menu: app.data.menu
       }
+      // var endpoint = endpoints[0];
+      // return {
+      //   endpoints: endpoints,
+      //   endpoint: endpoint,
+      //   allowInfinite: true,
+      //   hasMoreItems: true,
+      //   lastPage: 1,
+      //   stories: [],
+      //   indexTopic: 0
+      // }
     },
 
     on: {

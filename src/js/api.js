@@ -1,16 +1,29 @@
+/**
+ *  约定返回的数据格式:
+ * @returns code: 0 - 成功  负数-失败  -1000 表示session过期
+ * @returns message: 成功或者失败原因
+ */
+
 Mock.setup({ timeout: '200-600' });
 
 /**
  * 登录接口
+ * url:https://apps.gogoins.com/mass/json_login.php
+ * @param oper_id 邮箱地址
+ * @param pswd 用户密码
  */
 Mock.mock('https://apps.gogoins.com/mass/json_login.php', {
   'code': 0,
   'message': '请求成功',
-  'jsessionid': /\w{16}/,//这个定义数据的模板形式下面会介绍
+  'jsessionid': /\w{16}/, // token字符串
 })
 
 /**
  * 修改密码
+ * url: 'https://apps.gogoins.com/mass/json_reset.php'
+ * @param token jsessionid 标识用户信息的sessionID
+ * @param oldpassworld 旧密码
+ * @param newpassworld 新密码
  */
 Mock.mock('https://apps.gogoins.com/mass/json_reset.php', {
   'code': 0,
@@ -18,7 +31,8 @@ Mock.mock('https://apps.gogoins.com/mass/json_reset.php', {
 })
 
 /**
- * 获取主菜单
+ * 获取主菜单列表
+ * @param token 标识用户信息的sessionID
  */
 Mock.mock('https://apps.gogoins.com/mass/json_menu.php', {
   'code': 0,
@@ -92,5 +106,19 @@ Mock.mock('https://apps.gogoins.com/mass/json_menu.php', {
     }
   ]
 })
+
+/**
+ * 获取客户列表
+ * @param token 标识用户信息的sessionID
+ * url: ‘’
+ */
+
+/**
+ * 新增客户
+ * @param token 标识用户信息的sessionID
+ * url: ‘’
+ */
+
+
 
 
