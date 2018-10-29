@@ -71,19 +71,33 @@ if (localStorage.getItem('hn7-api')) {
 
 var $$ = Dom7;
 
- $$('#login .login-button').on('click', function () {
-   var username = $$('#login [name="username"]').val();
-   var password = $$('#login [name="password"]').val();
+$$('#login .login-button').on('click', function () {
+  var username = $$('#login [name="username"]').val();
+  var password = $$('#login [name="password"]').val();
   // console.log(app);
 
-   // Close login screen
+  // Close login screen
   app.loginScreen.close('#login');
 
 
 
-   // Alert username and password
-   app.dialog.alert('Username: ' + username + '<br>Password: ' + password);
- });
+  // Alert username and password
+  app.dialog.alert('Username: ' + username + '<br>Password: ' + password);
+});
+
+app.on('panelOpen', function (panel) {
+  console.log(panel)
+  console.log('Panel ' + panel.side + ' opened');
+});
+app.on('panelClose', function (panel) {
+  console.log(panel)
+  console.log('Panel ' + panel.side + ' opened');
+});
+
+// var swiper = app.swiper.create('.swiper-container', {
+//   speed: 400,
+//   spaceBetween: 100
+// });
 
 // app.loginScreen.open('#login');
   // splitView mode
