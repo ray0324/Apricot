@@ -34,7 +34,7 @@ define(function (require) {
       externalLinks: '.external, .message a', //external links also in comments
     },
     routes: routes, // App routes
-    data() {
+    data: function () {
       return {
         apiUrl: "https://api.hnpwa.com/v0/",
         menuUrl: 'https://apps.gogoins.com/mass/json_menu.php',
@@ -43,26 +43,15 @@ define(function (require) {
       }
     },
     methods: {
-      fetchAPI() {
+      fetchAPI: function () {
         var self = this;
         self.request.json(self.data.apiUrl, (api) => {
           self.data.api = api
         })
       },
-
     },
   });
 
   return app;
-
-
-  // var swiper = app.swiper.create('.swiper-container', {
-  //   speed: 400,
-  //   spaceBetween: 100
-  // });
-
-  // app.loginScreen.open('#login');
-  // splitView mode
-  // if (!app.panel.left.opened) delete leftView.params.linksView;
 
 })
