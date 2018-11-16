@@ -48,10 +48,27 @@
     <div class="view view-main">
     </div>
 
-    <div class="login-screen modal-in" id="login-screen">
+    <div class="login-screen modal-in" id="login-screen" style="display:none">
       <div class="view" id="login-view">
         <div class="page">
           <div class="page-content login-screen-content">
+
+            <!-- swiper -->
+            <div data-direction="horizontal" class="swiper-container" id="login-swiper">
+              <div class="swiper-pagination"></div>
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="./img/s1.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                  <img src="./img/s2.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                  <img src="./img/s3.jpg" alt="">
+                </div>
+              </div>
+            </div>
+            <!-- /swiper -->
             <div class="login-screen-title">Login</div>
             <div class="list">
               <ul>
@@ -59,7 +76,7 @@
                   <div class="item-inner">
                     <div class="item-title item-label">用户名</div>
                     <div class="item-input-wrap">
-                      <input type="text" name="username" placeholder="Your username">
+                      <input type="text" name="username">
                     </div>
                   </div>
                 </li>
@@ -67,21 +84,35 @@
                   <div class="item-inner">
                     <div class="item-title item-label">密码</div>
                     <div class="item-input-wrap">
-                      <input type="password" name="password" placeholder="Your password">
+                      <input type="password" name="password">
                     </div>
                   </div>
                 </li>
               </ul>
             </div>
+
             <div class="list">
               <ul>
                 <li>
-                  <a href="#" class="item-link list-button login-button close-login-screen">Sign In</a>
+                  <label class="item-checkbox item-content">
+                    <input type="checkbox" name="savetoken" checked="checked" />
+                    <i class="icon icon-checkbox"></i>
+                    <div class="item-inner">
+                      <div class="item-title">保持登录</div>
+                    </div>
+                  </label>
                 </li>
               </ul>
-              <div class="block-footer">Some text about login information.<br>Click "Sign In" to close Login Screen</div>
-
+              <ul>
+                <li>
+                  <div style="padding:0 16px;"><button class="button button-fill login-button">登 录</button></div>
+                </li>
+              </ul>
+              <div class="block-footer">
+                <p><a class="link login-screen-close" href="#">忘记密码？</a></p>
+              </div>
             </div>
+
           </div>
         </div>
       </div>

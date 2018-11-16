@@ -1,0 +1,37 @@
+<template>
+  <div class="page">
+    <!-- navbar -->
+  <div class="navbar">
+    <div class="navbar-inner sliding">
+      <div class="left">
+        <a href="#" class="link back">
+          <i class="icon icon-back"></i>
+          <span class="ios-only">Back</span>
+        </a>
+      </div>
+      <div class="title"></div>
+    </div>
+  </div>
+    <!-- /navbar -->
+
+    <iframe style="width:100%;" src="{{url}}" class="page-content"></iframe>
+
+  </div>
+</template>
+
+<script>
+  return {
+    data() {
+      return {
+        url: null
+      }
+    },
+    on: {
+      pageInit(e, page) {
+        this.$setState({
+          url: decodeURIComponent(this.$route.params.url)
+        })
+      },
+    },
+  }
+</script>

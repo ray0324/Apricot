@@ -3,7 +3,16 @@ define(function (require) {
   var app = require('./app');
   var $$ = Dom7;
 
-  if (localStorage.getItem('apricot_token')) {
+  if (!localStorage.getItem('token_flag')) {
+    $$('#login-screen').show();
+    app.swiper.create('#login-swiper', {
+      pagination: {
+        el: '.swiper-pagination',
+      },
+    });
+    app.loginScreen.create('#login-screen');
+    // app.loginScreen.close();
+  } else {
     app.loginScreen.close('#login-screen');
     var mainView = app.views.create('.view-main', { url: '/' });
     // Add Right/Main View
@@ -13,9 +22,19 @@ define(function (require) {
     });
   }
 
+
+
+
+
+
   $$('#login-screen .login-button').on('click', function () {
-    var username = $$('#login [name="username"]').val();
-    var password = $$('#login [name="password"]').val();
+    var username = $$('#login-screen [name="username"]').val();
+    var password = $$('#login-screen [name="password"]').val();
+    var token_flag = $$('#login-screen [type="checkbox"]').is(":checked");
+
+    if (token_flag) {
+      localStorage.setItem('token_flag', 1);
+    }
 
     app.request.json('https://apps.gogoins.com/mass/json_login.php', function (res) {
       if (res.code !== 0) {
@@ -23,18 +42,21 @@ define(function (require) {
         return;
       }
       localStorage.setItem('apricot_token', res.jsessionid)
-      app.loginScreen.close('#login');
-    });
-    // Add Right/Main View
-    var mainView = app.views.create('.view-main', {
-      url: '/'
+      app.loginScreen.close('#login-screen');
+      // Add Right/Main View
+      var mainView = app.views.create('.view-main', {
+        url: '/'
+      });
+
+      // Add Right/Main View
+      var leftView = app.views.create('#panel-left-view', {
+        url: '/panel-left/',
+        linksView: '.view-main'
+      });
+
     });
 
-    // Add Right/Main View
-    var leftView = app.views.create('#panel-left-view', {
-      url: '/panel-left/',
-      linksView: '.view-main'
-    });
+
 
 
     // Alert username and password

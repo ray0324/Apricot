@@ -38,17 +38,22 @@ define(function (require) {
       return {
         apiUrl: "https://api.hnpwa.com/v0/",
         menuUrl: 'https://apps.gogoins.com/mass/json_menu.php',
+        clientsUrl: 'https://apps.gogoins.com/mass/json_search.php',
         api: null,
         menu: []
       }
     },
     methods: {
       fetchAPI: function () {
-        var self = this;
-        self.request.json(self.data.apiUrl, (api) => {
-          self.data.api = api
+        this.request.json(this.data.apiUrl, (api) => {
+          this.data.api = api
         })
       },
+      fetchClients: function(cb){
+        this.request.json(this.data.clientsUrl, (list) => {
+          cb(list);
+        })
+      }
     },
   });
 
