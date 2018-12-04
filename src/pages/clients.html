@@ -1,3 +1,4 @@
+<template>
 <div class="page">
   <!-- navbar -->
   <div class="navbar">
@@ -23,35 +24,83 @@
   </div>
   <!-- /toolbar -->
   <!-- /toolbar -->
-  <div class="page-content login-screen-content">
-    <div class="login-screen-title">Clients</div>
-    <div class="list">
-      <ul>
-        <li class="item-content item-input">
-          <div class="item-inner">
-            <div class="item-title item-label">Username</div>
-            <div class="item-input-wrap">
-              <input type="text" name="username" placeholder="Your username">
-            </div>
-          </div>
-        </li>
-        <li class="item-content item-input">
-          <div class="item-inner">
-            <div class="item-title item-label">Password</div>
-            <div class="item-input-wrap">
-              <input type="password" name="password" placeholder="Your password">
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="list">
+  <div class="page-content">
+    <div class="block-title">About My App</div>
+    <div class="list media-list">
       <ul>
         <li>
-          <a href="#" class="item-link list-button login-button close-login-screen">Sign In</a>
+          <a href="#" class="item-link item-content">
+            <div class="item-inner">
+              <div class="item-title-row">
+                <div class="item-title">Yellow Submarine</div>
+                <div class="item-after">$15</div>
+              </div>
+              <div class="item-subtitle">Beatles</div>
+              <div class="item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut
+                turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum sodales sit
+                amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In
+                vel dui laoreet, commodo augue id, pulvinar lacus.</div>
+            </div>
+          </a></li>
+        <li>
+          <a href="#" class="item-link item-content">
+            <div class="item-inner">
+              <div class="item-title-row">
+                <div class="item-title">Don't Stop Me Now</div>
+                <div class="item-after">$22</div>
+              </div>
+              <div class="item-subtitle">Queen</div>
+              <div class="item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut
+                turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum sodales sit
+                amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In
+                vel dui laoreet, commodo augue id, pulvinar lacus.</div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="item-link item-content">
+            <div class="item-inner">
+              <div class="item-title-row">
+                <div class="item-title">Billie Jean</div>
+                <div class="item-after">$16</div>
+              </div>
+              <div class="item-subtitle">Michael Jackson</div>
+              <div class="item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut
+                turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum sodales sit
+                amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In
+                vel dui laoreet, commodo augue id, pulvinar lacus.</div>
+            </div>
+          </a>
         </li>
       </ul>
-      <div class="block-footer">Some text about login information.<br>Click "Sign In" to close Login Screen</div>
     </div>
   </div>
 </div>
+</template>
+<script>
+  return {
+    on: {
+      pageMounted: function (e, page) {
+        console.log('pageMounted', page);
+      },
+      pageInit: function (e, page) {
+        console.log('pageInit', page);
+      },
+      pageBeforeIn: function (e, page) {
+        console.log('pageBeforeIn', page);
+      },
+      pageAfterIn: function (e, page) {
+        console.log('pageAfterIn', page);
+      },
+      pageBeforeOut: function (e, page) {
+        console.log('pageBeforeOut', page);
+      },
+      pageAfterOut: function (e, page) {
+        console.log('pageAfterOut', page);
+      },
+      pageBeforeRemove: function (e, page) {
+        console.log('pageBeforeRemove', page);
+      },
+    }
+  }
+</script>

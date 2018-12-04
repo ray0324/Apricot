@@ -53,7 +53,8 @@ define(function (require) {
     },
     {
       path: '/clients/',
-      url: './pages/clients.html',
+      componentUrl: './pages/clients.html'
+      // url: './pages/clients.html',
     },
     {
       path: '/abc',
