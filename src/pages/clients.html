@@ -31,9 +31,9 @@
 
     <div class="page-content">
       <div class="searchbar-backdrop"></div>
-        <div class="block searchbar-hide-on-search">
-        </div>
-      <div class="list media-list client-list searchbar-found">
+      <div class="block searchbar-hide-on-search"></div>
+
+      <!-- <div class="list media-list client-list searchbar-found">
         <ul>
           {{#each clients}}
           <li>
@@ -49,10 +49,34 @@
           </li>
         {{/each}}
         </ul>
+      </div> -->
+
+      <div class="list media-list accordion-list">
+        <ul>
+        {{#each clients}}
+          <li class="accordion-item">
+            <a href="#"  class="item-content item-link">
+              <div class="item-inner">
+                <div class="item-title-row">
+                  <div class="item-title">{{this.REF2}}</div>
+                </div>
+                <div class="item-text">{{this.REF2}}</div>
+              </div>
+            </a>
+            <div class="accordion-item-content">
+              <div class="block"><p>{{this.REF4}}</p></div>
+              <div class="block"><p>{{this.REF5}}</p></div>
+              <div class="block"><p>{{this.REF6}}</p></div>
+              <div class="block"><p>{{this.REF7}}</p></div>
+            </div>
+          </li>
+        {{/each}}
+        </ul>
       </div>
+
     </div>
     <!-- toolbar -->
-    <div class="toolbar">
+    <div class="toolbar fixed-bottom">
       <div class="toolbar-inner">
         <a class="link">旅游保险</a>
         <a class="link">汽车保险</a>

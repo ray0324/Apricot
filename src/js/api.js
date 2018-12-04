@@ -103,6 +103,12 @@ Mock.mock('https://apps.gogoins.com/mass/json_menu.php', {
       "MENU_NM_CN": "登出",
       "MENU_NM_ZH": "登出",
       "PROG_ID": "index.html"
+    },
+    {
+      "MENU_NM_EN": "Settings",
+      "MENU_NM_CN": "设置",
+      "MENU_NM_ZH": "设定",
+      "PROG_ID": "settings.html"
     }
   ]
 })

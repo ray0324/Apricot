@@ -29,7 +29,7 @@ define(function (require) {
     root: '#app', // App root element
     id: 'io.framework7.hackernews7', // App bundle ID
     name: 'HackerNews7', // App name
-    language: 'zh_hk',
+    language: localStorage.getItem('language') || 'zh_hk',
     theme: 'md', // Automatic theme detection
     clicks: {
       externalLinks: '.external, .message a', //external links also in comments
@@ -50,6 +50,7 @@ define(function (require) {
           this.data.api = api
         })
       },
+      // 客户列表
       fetchClients: function(cb){
         this.request.json(this.data.clientsUrl, (list) => {
           cb(list);
