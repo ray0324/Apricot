@@ -35,21 +35,26 @@ define(function (require) {
       externalLinks: '.external, .message a', //external links also in comments
     },
     routes: routes, // App routes
-    data: function() {
+    data: function () {
       return {
         apiUrl: "https://api.hnpwa.com/v0/",
         menuUrl: 'https://apps.gogoins.com/mass/json_menu.php',
+        clientsUrl: 'https://apps.gogoins.com/mass/json_search.php',
         api: null,
         menu: []
       }
     },
     methods: {
-      fetchAPI: function() {
-        var self = this;
-        self.request.json(self.data.apiUrl, (api) => {
-          self.data.api = api
+      fetchAPI: function () {
+        this.request.json(this.data.apiUrl, (api) => {
+          this.data.api = api
         })
       },
+      fetchClients: function(cb){
+        this.request.json(this.data.clientsUrl, (list) => {
+          cb(list);
+        })
+      }
     },
   });
 

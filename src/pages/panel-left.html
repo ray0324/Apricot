@@ -17,22 +17,22 @@
 <script>
   return {
     // Lifecycle Hooks
-    beforeCreate() {
+    beforeCreate: function () {
       console.log('componentBeforeCreate', this)
     },
-    created() {
+    created: function () {
       console.log('componentCreated', this)
     },
-    beforeMount() {
+    beforeMount: function () {
       console.log('componentBeforeMount', this)
     },
-    mounted() {
+    mounted: function () {
       console.log('componentMounted', this);
     },
-    beforeDestroy() {
+    beforeDestroy: function () {
       console.log('componentBeforeDestroy', this);
     },
-    destroyed() {
+    destroyed: function () {
       console.log('componentDestroyed', this);
     },
     data: function () {
