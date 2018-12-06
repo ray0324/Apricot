@@ -45,12 +45,14 @@ define(function (require) {
     },
     methods: {
       fetchAPI: function () {
-        this.request.json(this.data.apiUrl, (api) => {
-          this.data.api = api
+        var self = this;
+        this.request.json(this.data.apiUrl, function(api){
+          self.data.api = api;
         })
       },
       fetchClients: function(cb){
-        this.request.json(this.data.clientsUrl, (list) => {
+
+        this.request.json(this.data.clientsUrl, function(list) {
           cb(list);
         })
       }
