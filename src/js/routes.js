@@ -22,6 +22,10 @@ define(function (require) {
       url: './pages/empty.html',
     },
     {
+      path: '/settings/',
+      componentUrl: './pages/settings.html',
+    },
+    {
       path: '/about/',
       url: './pages/about.html',
     },

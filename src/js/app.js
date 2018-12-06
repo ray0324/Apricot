@@ -2,6 +2,7 @@
 define(function (require) {
   var routes = require('./routes');
   var Framework7 = require('../lib/framework7');
+
   Template7.registerHelper('pluralize', function (arr, options) {
     if (!arr) return '';
     if (typeof arr === "number") return (arr < 2) ? options.hash.single : options.hash.multiple;
@@ -28,7 +29,7 @@ define(function (require) {
     root: '#app', // App root element
     id: 'io.framework7.hackernews7', // App bundle ID
     name: 'HackerNews7', // App name
-    language: 'zh_hk',
+    language: localStorage.getItem('language') || 'zh_hk',
     theme: 'md', // Automatic theme detection
     clicks: {
       externalLinks: '.external, .message a', //external links also in comments
@@ -50,6 +51,7 @@ define(function (require) {
           self.data.api = api;
         })
       },
+      // 客户列表
       fetchClients: function(cb){
 
         this.request.json(this.data.clientsUrl, function(list) {
@@ -60,5 +62,4 @@ define(function (require) {
   });
 
   return app;
-
 })

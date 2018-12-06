@@ -1,0 +1,120 @@
+<template>
+  <div class="page">
+    <!-- navbar -->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+            <span class="ios-only">Back</span>
+          </a>
+        </div>
+        <div class="title">设置</div>
+      </div>
+    </div>
+    <!-- /navbar -->
+    <div class="page-content">
+
+      <div class="list">
+        <ul>
+
+          <li>
+            <a id="lang" class="item-link smart-select smart-select-init" data-open-in="sheet">
+              <select name="language">
+                <option value="en">English</option>
+                <option value="zh_cn">简体中文</option>
+                <option value="zh_hk">中文</option>
+              </select>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title">Language</div>
+                  <div class="item-after">简体中文</div>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a id="theme" class="item-link smart-select smart-select-init" data-open-in="sheet">
+              <select name="theme">
+                <option value="black">Black</option>
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+              </select>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title">主题</div>
+                  <div class="item-after">Mac</div>
+                </div>
+              </div>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+
+    </div>
+  </div>
+</template>
+
+<script>
+  return {
+    data: function () {
+      return {
+        lang: localStorage.getItem('language'),
+        theme: localStorage.getItem('theme')
+      }
+    },
+    on: {
+      pageMounted: function (e, page) {
+        var app = this.$app;
+        // var smartSelect = app.smartSelect.get('.smart-select');
+        // console.log(smartSelect)
+        // console.log(this.$app);
+        // smartSelect.on('smartselect:closed',function(e){
+        //   console.log(e)
+        // })
+
+
+      },
+      pageInit: function (e, page) {
+        // var $ = Dom7;
+        // console.log(this.$app);
+
+        console.log('----')
+        console.log('pageInit', page);
+      },
+      pageBeforeIn: function (e, page) {
+        console.log('pageBeforeIn', page);
+      },
+      pageAfterIn: function (e, page) {
+        console.log('pageAfterIn', page);
+        var app = this.$app;
+        var $ = Dom7;
+        // 设置语言
+        app.smartSelect.get('#lang').on('close',function(e){
+          console.log(e.selectEl.value);
+          localStorage.setItem('language',e.selectEl.value);
+          app.dialog.confirm('语言已经切换，是否立即重启？', '提示', function(){
+            location.reload();
+          })
+        })
+        // 设置主题
+        app.smartSelect.get('#theme').on('close',function(e){
+          $('#app').removeClass('color-theme-pink color-theme-blue color-theme-red color-theme-black color-theme-gray color-theme-orange color-theme-yellow color-theme-green color-theme-white');
+          $('#app').addClass('color-theme-' + e.selectEl.value);
+          localStorage.setItem('theme_color',e.selectEl.value);
+        })
+      },
+      pageBeforeOut: function (e, page) {
+        console.log('pageBeforeOut', page);
+      },
+      pageAfterOut: function (e, page) {
+        console.log('pageAfterOut', page);
+      },
+      pageBeforeRemove: function (e, page) {
+        console.log('pageBeforeRemove', page);
+      },
+    }
+  }
+</script>

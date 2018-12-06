@@ -8,6 +8,7 @@ define(function (require) {
     menu_links:{
       'main.html': '/', // 主页
       'sysSearch.html?srh_typ=C': '/clients/', // 客户
+      'settings.html': '/settings/', // 设置
     }
   }
 })
