@@ -3,7 +3,7 @@ define(function (require) {
   return [
     {
       path: '/',
-      url: './pages/home.html',
+      componentUrl: './pages/home.html',
     },
     {
       path: '/panel-left/',
@@ -12,6 +12,14 @@ define(function (require) {
     {
       path: '/clients/',
       componentUrl: './pages/clients.html',
+    },
+    {
+      path: '/add-client',
+      componentUrl: './pages/add-client.html',
+    },
+    {
+      path: '/update-client',
+      componentUrl: './pages/update-client.html',
     },
     {
       path: '/login/',
@@ -33,9 +41,13 @@ define(function (require) {
       path: '/iframe/:url/',
       componentUrl: './pages/iframe.html',
     },
+
     {
-      path: '/story/:id/',
-      componentUrl: './pages/story.html',
+      path: '/logout',
+      async: function(){
+        localStorage.clear();
+        location.reload();
+      }
     },
     {
       path: '(.*)',

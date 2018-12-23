@@ -2,12 +2,20 @@
   <div class="page" data-name="stories">
     <div class="page-content">
       <div class="block-title"></div>
-      <div class="list links-list">
+      <div class="list">
         <ul>
           {{#each menu}}
           <li>
-            <a href="{{this.link}}" class="panel-close">{{this.name}}</a>
+            <a class="item-content item-link panel-close" href="{{this.link}}">
+              <div class="item-media"><i class="f7-icons size-12">{{this.icon}}</i></div>
+              <div class="item-inner">
+                <div class="item-title">{{this.name}}</div>
+              </div>
+            </a>
           </li>
+          <!-- <li>
+            <a href="{{this.link}}" class="panel-close"><i class="icon material-icons md-only">edit</i>{{this.name}}</a>
+          </li> -->
           {{/each}}
         </ul>
       </div>
@@ -64,7 +72,27 @@
         console.log('pageBeforeIn', page);
       },
       pageAfterIn: function (e, page) {
-        console.log('pageAfterIn', page);
+        var $ = Dom7;
+        $(document).on('click',function(e){
+          console.log(e);
+          if ($(e.target).parent('a').attr('href') =='/404') {
+            e.preventDefault();
+          }
+          // console.log(e.currentTarget.)
+
+          if(e.target.classList.contains('edit')) {
+
+            var rst = self.clients.filter(function(item){
+              return item.REF1 == e.target.dataset.id
+            })[0];
+
+            localStorage.setItem('tmp_client_info',JSON.stringify(rst));
+
+            self.$app.router.navigate('/update-client');
+
+          }
+          // console.log(e.target)
+        })
       },
       pageBeforeOut: function (e, page) {
         console.log('pageBeforeOut', page);

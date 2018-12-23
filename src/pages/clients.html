@@ -9,6 +9,11 @@
           </a>
         </div>
         <div class="title">客户</div>
+        <div class="right">
+          <a href="/add-client" class="link icon-only">
+            <i class="icon material-icons md-only">add</i>
+          </a>
+        </div>
         <div class="subnavbar">
           <!-- Searchbar with auto init -->
           <form class="searchbar">
@@ -27,29 +32,9 @@
     </div>
     <!-- /navbar -->
 
-
-
     <div class="page-content">
       <div class="searchbar-backdrop"></div>
       <div class="block searchbar-hide-on-search"></div>
-
-      <!-- <div class="list media-list client-list searchbar-found">
-        <ul>
-          {{#each clients}}
-          <li>
-            <a href="#" class="item-link item-content">
-              <div class="item-inner">
-                <div class="item-title-row">
-                  <div class="item-title">{{this.REF2}}</div>
-                  <div class="item-after">{{this.REF1}}</div>
-                </div>
-                <div class="item-text">{{this.REF5}}</div>
-              </div>
-            </a>
-          </li>
-        {{/each}}
-        </ul>
-      </div> -->
 
       <div class="list media-list accordion-list">
         <ul>
@@ -67,7 +52,7 @@
               <div class="block"><p>{{this.REF4}}</p></div>
               <div class="block"><p>{{this.REF5}}</p></div>
               <div class="block"><p>{{this.REF6}}</p></div>
-              <div class="block"><p>{{this.REF7}}</p></div>
+              <div class="block"><p>{{this.REF7}}<i style="float:right" data-id="{{this.REF1}}" class="edit icon material-icons md-only">edit</i></p></div>
             </div>
           </li>
         {{/each}}
@@ -99,12 +84,7 @@
         var app = this.$app;
         console.log(this.$app);
         var self = this;
-        app.methods.fetchClients(function(res){
-          console.log(res.results);
-          self.$setState({
-            clients: res.results
-          })
-        })
+
         // console.log('pageMounted', page);
         var searchbar = app.searchbar.create({
           el: '.searchbar',
@@ -112,20 +92,48 @@
           searchIn: '.item-title',
           on: {
             search(sb, query, previousQuery) {
-              console.log(query, previousQuery);
+              app.methods.fetchClients({srh_typ:'c', srh_key: query },function(clients){
+                // console.log(res.results);
+                self.$setState({
+                  clients: clients
+                })
+              })
             }
           }
         });
       },
-      pageInit: function (e, page) {
-        var $ = Dom7;
-        console.log('pageInit', page);
-      },
+
       pageBeforeIn: function (e, page) {
         console.log('pageBeforeIn', page);
+        var app = this.$app;
+        // console.log(this.$app);
+        var self = this;
+        app.methods.fetchClients({srh_typ:'c', srh_key:''},function(clients){
+          // console.log(res.results);
+          self.$setState({
+            clients: clients
+          })
+        })
       },
       pageAfterIn: function (e, page) {
-        console.log('pageAfterIn', page);
+        var $ = Dom7;
+        var self = this;
+        console.log('pageInit', page);
+        $(document).on('click',function(e){
+          if(e.target.classList.contains('edit')) {
+
+            var rst = self.clients.filter(function(item){
+              return item.REF1 == e.target.dataset.id
+            })[0];
+
+            localStorage.setItem('tmp_client_info',JSON.stringify(rst));
+
+            self.$app.router.navigate('/update-client');
+
+          }
+          // console.log(e.target)
+        })
+
       },
       pageBeforeOut: function (e, page) {
         console.log('pageBeforeOut', page);

@@ -34,6 +34,7 @@ define(function (require) {
     }
 
     app.request.json('https://apps.gogoins.com/mass/json_login.php', function (res) {
+      console.log(res)
       if (res.code !== 0) {
         app.dialog.alert(res.message);
         return;
@@ -52,10 +53,12 @@ define(function (require) {
       });
 
     });
-
     // Alert username and password
     // app.dialog.alert('Username: ' + username + '<br>Password: ' + password);
   });
+
+
+
 
   // app.on('panelOpen', function (panel) {
   //   console.log(panel)

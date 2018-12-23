@@ -21,24 +21,32 @@ define(function (require) {
     //   return;
     // }
 
-    app.request.json(app.data.menuUrl, function (data) {
-      console.log(data.code);
-      // if (data.code != 0) {
-      //   localStorage.removeItem('apricot_token');
-      //   localStorage.removeItem('apricot_menu');
-      //   location.reload();
-      //   return;
-      // }
-      var apricot_menu = utils.parseMenu(data.results);
+    var apricot_menu = JSON.parse(localStorage.getItem('apricot_menu'));
+    if(  apricot_menu && apricot_menu.length > 0) {
+      var _apricot_menu = utils.parseMenu(apricot_menu);
       // localStorage.setItem('apricot_menu', JSON.stringify(apricot_menu));
+      app.data.menu = _apricot_menu.map(function (menu) {
+        return {
+          name: menu[menu_key],
+          link: menu.PROG_ID,
+          icon: menu.ICON
+        }
+      });
+      resolve({
+        componentUrl: './pages/panel-left.html',
+      })
+      return;
+    }
+
+    app.request.json(app.data.menuUrl, function (data) {
+      var apricot_menu = utils.parseMenu(data);
       app.data.menu = apricot_menu.map(function (menu) {
         return {
           name: menu[menu_key],
-          link: menu.PROG_ID
+          link: menu.PROG_ID,
+          icon: menu.ICON
         }
       });
-
-      // console.log(app.data);
       resolve({
         componentUrl: './pages/panel-left.html',
       })

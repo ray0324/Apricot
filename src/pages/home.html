@@ -1,46 +1,61 @@
-<div class="page">
-  <!-- navbar -->
-  <div class="navbar">
-    <div class="navbar-inner">
-      <div class="left">
-        <a href="#" class="link icon-only panel-open" data-panel="left">
-          <i class="icon material-icons md-only">menu</i>
-        </a>
-      </div>
-      <div class="title sliding">Home</div>
-    </div>
-  </div>
-  <!-- /navbar -->
-  <!-- toolbar -->
-  <div class="toolbar fixed-bottom">
-    <div class="toolbar-inner">
-      <a class="link">旅游保险</a>
-      <a class="link">汽车保险</a>
-      <a class="link">茶餐保险</a>
-    </div>
-  </div>
-  <!-- /toolbar -->
-  <div class="page-content">
-    <!-- swiper -->
-    <div data-direction="horizontal" data-pagination='{"el": ".swiper-pagination", "hideOnClick": true}' class="swiper-container swiper-init home-swiper" >
-      <div class="swiper-pagination"></div>
-      <div class="swiper-wrapper">
-        <div class="swiper-slide"><a href="/iframe/https%3A%2F%2Fm.baidu.com%2F/"><img src="./img/h1.jpg" alt=""></a></div>
-        <div class="swiper-slide"><img src="./img/h2.jpg" alt=""></div>
-        <div class="swiper-slide"><img src="./img/h3.jpg" alt=""></div>
+  <template>
+  <div class="page">
+    <!-- navbar -->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="#" class="link icon-only panel-open" data-panel="left">
+            <i class="icon material-icons md-only">menu</i>
+          </a>
+        </div>
+        <div class="title sliding">Home</div>
       </div>
     </div>
-    <!-- /swiper -->
-    <div class="block-title">腾讯简介</div>
-    <div class="block block-strong">
-      <p>腾讯，1998年11月诞生于中国深圳，是一家以互联网为基础的科技与文化公司。我们的使命是“通过互联网服务提升人类生活品质”。腾讯秉承着
-      “一切以用户价值为依归”的经营理念，为亿万网民提供优质的互联网综合服务。腾讯的战略目标是“连接一切”，我们长期致力于社交平台与数字...</p>
-      <p>腾讯，1998年11月诞生于中国深圳，是一家以互联网为基础的科技与文化公司。我们的使命是“通过互联网服务提升人类生活品质”。腾讯秉承着
-      “一切以用户价值为依归”的经营理念，为亿万网民提供优质的互联网综合服务。腾讯的战略目标是“连接一切”，我们长期致力于社交平台与数字...</p>
+    <!-- /navbar -->
+    <!-- toolbar -->
+    <div class="toolbar fixed-bottom">
+      <div class="toolbar-inner">
+        <a class="link">旅游保险</a>
+        <a class="link">汽车保险</a>
+        <a class="link">茶餐保险</a>
+      </div>
     </div>
-    <div class="block-title">公司愿景</div>
-    <div class="block">
-      <p>成为最受尊敬的互联网企业是腾讯的愿景目标。腾讯一直积极参与公益事业、努力承担企业社会责任、推动网络文明。腾讯的每一项产品与业务都拥抱公益，开放互联，并倡导所有企业一起行动，通过互联网领域的技术、传播优势，缔造“人人可公益，民众齐参与”的互联网公益新生态。</p>
+    <!-- /toolbar -->
+    <div class="page-content">
+      <!-- swiper -->
+      <div data-direction="horizontal" data-pagination='{"el": ".swiper-pagination", "hideOnClick": true}' class="swiper-container swiper-init home-swiper" >
+        <div class="swiper-pagination"></div>
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><a href="/iframe/https%3A%2F%2Fm.baidu.com%2F/"><img src="./img/h1.jpg" alt=""></a></div>
+          <div class="swiper-slide"><img src="./img/h2.jpg" alt=""></div>
+          <div class="swiper-slide"><img src="./img/h3.jpg" alt=""></div>
+        </div>
+      </div>
+      <!-- /swiper -->
+      <div class="block-title">腾讯简介</div>
+      <div class="block block-strong">
+        <p>腾讯，1998年11月诞生于中国深圳，是一家以互联网为基础的科技与文化公司。我们的使命是“通过互联网服务提升人类生活品质”。腾讯秉承着
+        “一切以用户价值为依归”的经营理念，为亿万网民提供优质的互联网综合服务。腾讯的战略目标是“连接一切”，我们长期致力于社交平台与数字...</p>
+        <p>腾讯，1998年11月诞生于中国深圳，是一家以互联网为基础的科技与文化公司。我们的使命是“通过互联网服务提升人类生活品质”。腾讯秉承着
+        “一切以用户价值为依归”的经营理念，为亿万网民提供优质的互联网综合服务。腾讯的战略目标是“连接一切”，我们长期致力于社交平台与数字...</p>
+      </div>
+      <div class="block-title">公司愿景</div>
+      <div class="block">
+        <p>成为最受尊敬的互联网企业是腾讯的愿景目标。腾讯一直积极参与公益事业、努力承担企业社会责任、推动网络文明。腾讯的每一项产品与业务都拥抱公益，开放互联，并倡导所有企业一起行动，通过互联网领域的技术、传播优势，缔造“人人可公益，民众齐参与”的互联网公益新生态。</p>
+    </div>
+  </div>
+</template>
 
-  </div>
-</div>
+<script>
+  return {
+    on:{
+      pageBeforeIn: function() {
+        var app = this.$app;
+        // 请求菜单
+        app.request.json(app.data.menuUrl, function (data) {
+          localStorage.setItem('apricot_menu',JSON.stringify(data));
+        });
+      }
+    }
+  }
+</script>

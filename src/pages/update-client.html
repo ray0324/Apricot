@@ -1,0 +1,150 @@
+<template>
+  <div class="page">
+    <!-- navbar -->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <a href="#" class="link back">
+          <i class="icon icon-back"></i>
+          <span class="ios-only">Back</span>
+        </a>
+        <div class="title">编辑</div>
+      </div>
+    </div>
+    <!-- /navbar -->
+
+    <div class="page-content">
+      <form class="list" id="client-info-update-form">
+        <ul>
+          <li>
+            <div class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label"><span style="color:red">*</span>名</div>
+                <div class="item-input-wrap">
+                  <input type="text" name="cstmr_nm1">
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label"><span style="color:red">*</span>姓</div>
+                <div class="item-input-wrap">
+                  <input type="text" name="cstmr_nm2">
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label"><span style="color:red">*</span>手机号码</div>
+                <div class="item-input-wrap">
+                  <input type="text" name="tel_mb">
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label"><span style="color:red">*</span>E-mail</div>
+                <div class="item-input-wrap">
+                  <input type="email" name="email_adrs">
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">性别</div>
+                <div class="item-input-wrap">
+                  <select name="gender">
+                    <option value="male" selected>男</option>
+                    <option value="female">女</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">出生日期</div>
+              <div class="item-input-wrap">
+                <input name="birthday" type="date" value="2014-04-30" placeholder="Please choose..." class="input-with-value">
+              </div>
+            </div>
+          </li>
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">住址</div>
+              <div class="item-input-wrap">
+                <textarea name="adrs_1" class="resizable input-with-value" placeholder="住址"></textarea>
+              </div>
+            </div>
+          </li>
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">备注</div>
+              <div class="item-input-wrap">
+                <textarea name="bio" class="resizable input-with-value" placeholder="备注"></textarea>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </form>
+
+      <div class="block block-strong">
+        <a class="button convert-form-to-data" href="#">保存</a>
+      </div>
+
+    </div>
+  </div>
+</template>
+
+<script>
+  return {
+    data: function () {
+      return {
+        clients: []
+      }
+    },
+    on: {
+      pageMounted: function (e, page) {
+        var app = this.$app;
+        var $ = Dom7;
+        var tmp_client_info = JSON.parse(localStorage.getItem('tmp_client_info'))
+        console.log(tmp_client_info);
+
+        var oldFormData = {
+          'cstmr_nm1': tmp_client_info.REF2,
+          'cstmr_nm2': '',
+          'tel_mb': '1300544',
+          'email_adrs': 'ray@local',
+          'gender': 'female',
+          'adrs_1': 'address',
+          'bio': 'old bio',
+        };
+
+        app.form.fillFromData('#client-info-update-form', oldFormData);
+
+        $('.convert-form-to-data').on('click', function(){
+          var formData = app.form.convertToData('#client-info-update-form');
+          formData.opt ='N';
+          formData.cstmr_ref = 'N';
+          formData.s_id = localStorage.getItem('apricot_token');
+          app.methods.addClient(formData,function(res){
+            console.log(res);
+            if(res[0] && res[0].retval == 0 ){
+              app.router.back('/clients/');
+              alert('添加成功');
+            }
+
+          })
+          // alert(JSON.stringify(formData));
+        });
+      }
+    }
+  }
+</script>

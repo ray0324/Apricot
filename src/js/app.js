@@ -37,27 +37,26 @@ define(function (require) {
     routes: routes, // App routes
     data: function () {
       return {
-        apiUrl: "https://api.hnpwa.com/v0/",
-        menuUrl: 'https://apps.gogoins.com/mass/json_menu.php',
-        clientsUrl: 'https://apps.gogoins.com/mass/json_search.php',
+        menuUrl: 'https://apps.gogoins.com/~mass1810/json_menu.php',
+        clientsUrl: 'https://apps.gogoins.com/~mass1810/json_search.php', // 客户列表 搜索
+        addClientUrl: 'http://apricot1.gogoins.com/~mass1810/json_cstmr.php', // 添加客户
         api: null,
         menu: []
       }
     },
     methods: {
-      fetchAPI: function () {
-        var self = this;
-        this.request.json(this.data.apiUrl, function(api){
-          self.data.api = api;
+      // 客户列表
+      fetchClients: function(params, cb){
+        this.request.post(this.data.clientsUrl, params, function(list) {
+          cb(JSON.parse(list));
         })
       },
-      // 客户列表
-      fetchClients: function(cb){
-
-        this.request.json(this.data.clientsUrl, function(list) {
-          cb(list);
+      // 添加客户
+      addClient: function(params, cb){
+        this.request.post(this.data.addClientUrl, params, function(list) {
+          cb(JSON.parse(list));
         })
-      }
+      },
     },
   });
 
